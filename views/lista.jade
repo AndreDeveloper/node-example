@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    div.input-group.col-md-4.col-sm-4.col-lg-4.col-xs-4.col-lg-offset-4.col-md-offset-4
+        input.form-control#search(type="text", placeholder="Pesquisar")
+        span.input-group-addon(style="cursor: pointer;", onclick="pesquisar()")
+            span.glyphicon.glyphicon-search 
+    br
+    table.table.table-hover.table-bordered
+        thead
+            tr
+                th Nome
+                th Descrição
+                th Quantidade
+        tbody
+            each val, item in lista
+                tr
+                    th #{val.nome}
+                    th #{val.descricao}
+                    th #{val.quantidade}
+
+    script(src='/lista.js')

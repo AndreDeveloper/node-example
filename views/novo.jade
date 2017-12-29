@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    form.form-horinzontal(method="post", action="/item/novo")
+        div.form-group
+            label(for="nome") Nome:
+            input.form-control#nome(type="text", name="nome", placeholder="Nome:")
+        div.form-group
+            label(for="descricao") Descrição:
+            input.form-control#descricao(type="text", name="descricao", placeholder="Descrição")
+        div.form-group
+            label(for="quantidade") Quandidade:
+            input.form-control#quantidade(type="text", name="quantidade", placeholder="Quantidade")
+        button.btn.btn-success.btn-block(type="submit")
+            span.glyphicon.glyphicon-floppy-disk Salvar
+            

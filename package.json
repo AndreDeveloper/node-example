@@ -1,0 +1,28 @@
+{
+  "name": "primeiro_crud",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.16.2",
+    "jade": "^1.11.0",
+    "jquery": "^3.2.1",
+    "mssql": "^4.1.0",
+    "stylus": "^0.54.5"
+  },
+  "description": "criacao de um crud simple para compreender e se familiarizar com o nodejs",
+  "main": "server.js",
+  "devDependencies": {},
+  "keywords": [
+    "crud",
+    "learn",
+    "nodejs",
+    "jade"
+  ],
+  "author": "Andre Oliveira",
+  "license": "ISC"
+}

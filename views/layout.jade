@@ -1,0 +1,17 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/bootstrap.min.css')        
+    body
+        div.container
+            div.jumbotron
+                h2(onClick="document.location.assign('/');", style="cursor: pointer;") CRUD SIMPLES COM NODE JS 
+                    div.small by: André Oliveira
+            br
+            br
+            br
+            block content
+            
+        script(src='/jquery.js')
+        script(src='/bootstrap.min.js')
