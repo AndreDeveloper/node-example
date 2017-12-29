@@ -1,16 +1,31 @@
 extends layout
 
 block content
-    form.form-horinzontal(method="post", action="/item/novo")
-        div.form-group
-            label(for="nome") Nome:
-            input.form-control#nome(type="text", name="nome", placeholder="Nome:")
-        div.form-group
-            label(for="descricao") Descrição:
-            input.form-control#descricao(type="text", name="descricao", placeholder="Descrição")
-        div.form-group
-            label(for="quantidade") Quandidade:
-            input.form-control#quantidade(type="text", name="quantidade", placeholder="Quantidade")
-        button.btn.btn-success.btn-block(type="submit")
-            span.glyphicon.glyphicon-floppy-disk Salvar
+    if item
+        form.form-horinzontal(method="post", action="/item/update")
+            input(type="hidden", value="#{item[0].id}", name="id")
+            div.form-group
+                label(for="nome") Nome:
+                input.form-control#nome(type="text", name="nome", placeholder="Nome:" value="#{item[0].nome}")
+            div.form-group
+                label(for="descricao") Descrição:
+                input.form-control#descricao(type="text", name="descricao", placeholder="Descrição", value="#{item[0].descricao}")
+            div.form-group
+                label(for="quantidade") Quandidade:
+                input.form-control#quantidade(type="text", name="quantidade", placeholder="Quantidade", value="#{item[0].quantidade}")
+            button.btn.btn-primary.btn-block(type="submit")
+                span.glyphicon.glyphicon-pencil Editar
+    else
+        form.form-horinzontal(method="post", action="/item/novo")
+            div.form-group
+                label(for="nome") Nome:
+                input.form-control#nome(type="text", name="nome", placeholder="Nome:")
+            div.form-group
+                label(for="descricao") Descrição:
+                input.form-control#descricao(type="text", name="descricao", placeholder="Descrição")
+            div.form-group
+                label(for="quantidade") Quandidade:
+                input.form-control#quantidade(type="text", name="quantidade", placeholder="Quantidade")
+            button.btn.btn-success.btn-block(type="submit")
+                span.glyphicon.glyphicon-floppy-disk Salvar
             

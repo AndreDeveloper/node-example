@@ -12,11 +12,15 @@ block content
                 th Nome
                 th Descrição
                 th Quantidade
+                th                
         tbody
             each val, item in lista
                 tr
-                    th #{val.nome}
-                    th #{val.descricao}
-                    th #{val.quantidade}
+                    td #{val.nome}
+                    td #{val.descricao}
+                    td #{val.quantidade}
+                    td.text-center
+                        button.btn.btn-danger.glyphicon.glyphicon-remove(style="margin-right: 3px;", onclick="excluir(#{val.id})")                    
+                        button.btn.btn-primary.glyphicon.glyphicon-pencil(onclick="editar(#{val.id})")
 
     script(src='/lista.js')

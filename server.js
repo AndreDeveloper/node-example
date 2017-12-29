@@ -47,10 +47,30 @@ app.get('/', function(req, res){
 });
 
 // tela de novo cadastro
-app.get('/item', function(req, res){  
-    res.render('novo', {
-        title: 'Inserir Item',        
-    });  
+app.get('/item/:id?', function(req, res){  
+    var id = req.params.id;    
+    if(id){
+        var sqlQry = `select * from itens where id = ${id}`    
+        global.conn.request()
+            .query(sqlQry)
+            .then(result => {
+                console.log(result.recordset)                
+                res.render('novo', {
+                    title: 'Alterar item',        
+                    item: result.recordset
+                });            
+            })
+            .catch(err => {
+                res.render('erro', {
+                    title: 'erro',        
+                    erro: err
+                });
+            }); 
+    }else{
+        res.render('novo', {
+            title: 'Inserir Item',        
+        });  
+    }    
 });
 
 // tela de novo cadastro
@@ -77,13 +97,47 @@ app.get('/lista/:id?', function(req, res){
 });
 
 // cadastra novo item
-app.post('/item/novo', function(req, res){
+app.post('/item/novo', function(req, res){    
     var body = req.body
     sqlQry = `insert into itens values ('${body.nome}','${body.descricao}', ${body.quantidade})`
     global.conn.request()
         .query(sqlQry)
         .then(result => {
-            res.redirect('/lista' + string);            
+            res.redirect('/lista');            
+        })
+        .catch(err => {
+            res.render('erro', {
+                title: 'erro',        
+                erro: err
+            });
+        });          
+});
+
+app.get('/item/excluir/:id', function(req, res){
+    var id = req.params.id;
+    sqlQry = `DELETE FROM itens WHERE id = ${id}`
+    console.log(sqlQry);
+    global.conn.request()
+        .query(sqlQry)
+        .then(result => {
+            res.redirect('/lista');            
+        })
+        .catch(err => {
+            res.render('erro', {
+                title: 'erro',        
+                erro: err
+            });
+        });      
+});
+
+app.post('/item/update', function(req, res){
+    var body = req.body;
+    sqlQry = `update itens set nome = '${body.nome}', descricao = '${body.descricao}', quantidade = ${body.quantidade} where id = ${body.id}`
+    console.log(sqlQry);
+    global.conn.request()
+        .query(sqlQry)
+        .then(result => {
+            res.redirect('/lista');            
         })
         .catch(err => {
             res.render('erro', {
